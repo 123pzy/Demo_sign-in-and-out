@@ -1,16 +1,13 @@
-// koa-router
 const Router = require("koa-router");
 const router = new Router();
-const list = require("./list");
-const home = require('./home')
+const loginRouter = require("./login");
+const registerRouter = require("./register");
 
-router.get("/home", (ctx) => {
-  ctx.body = "首页";
+router.get("/", (ctx) => {
+  ctx.body = "这是首页";
 });
 
-// router.use()
-router.use("/list", list.routes(), list.allowedMethods());
-router.use("/home", home.routes(), home.allowedMethods());
-router.redirect('/','/home')
+router.use("/login", loginRouter.routes(), loginRouter.allowedMethods());
+router.use('/register',registerRouter.routes(),registerRouter.allowedMethods())
 
 module.exports = router;
